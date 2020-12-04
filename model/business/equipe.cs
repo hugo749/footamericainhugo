@@ -27,6 +27,15 @@ namespace model.business
         public string Nom { get => _nom; set => _nom = value; }
         public DateTime Creation { get => _creation; set => _creation = value; }
         public List<joueur> Listjoueur { get => _listjoueur; set => _listjoueur = value; }
+
+
+
+        public override string ToString()
+        {
+            return this.Nom;
+        }
     }
+
     
+
 }

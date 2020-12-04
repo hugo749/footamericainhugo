@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using model.data;
 using model.business;
+using VisionEquipe;
 
 namespace footamericainhugo
 {
@@ -29,13 +30,16 @@ namespace footamericainhugo
         {
             //C'est ici, dans la méthode Application_Startup, qu'on instancie nos objets Dbal et Dao
 
-            thedbal = new dbal("dsfootamericain");
+            thedbal = new dbal();
             thedaopays = new DAOpays(thedbal);
-            thedaopost = new DAOpost(thedbal, thedaopays);
+            thedaopost = new DAOpost(thedbal);
+            thedaoequipe = new DAOequipe(thedbal, thedaojoueur);
+            thedaojoueur = new DAOjoueur(thedbal, thedaopays, thedaopost);
+
 
             // Create the startup window
             //là, on lance la fenêtre souhaitée en instanciant la classe de notre fenêtre
-            GestionFromages wnd = new GestionFromages(thedaopays, thedaofromage);
+            JoueurEquipe wnd = new JoueurEquipe(thedaoequipe,thedaojoueur,thedaopays,thedaopost);
             //et on utilise la méthode Show() de notre objet fenêtre pour afficher la fenêtre
             //exemple: MainWindow lafenetre = new MainWindow(); (et on y passe en paramètre Dbal et Dao au besoin)
             wnd.Show();

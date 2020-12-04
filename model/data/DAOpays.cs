@@ -57,12 +57,12 @@ namespace model.data
         //        }
         //    }
         //}
-        
-        //public void Insert (pays unpays)
-        //{
-        //    string query = " pays (id, nom) VALUES (" + unpays.Id + ",'" + unpays.Nom.Replace("'", "''") + "' );";
-        //        this._dbal.Insert(query);
-        //}
+
+        public void Insert(pays unpays)
+        {
+            string query = " pays (id, nom) VALUES (" + unpays.Id + ",'" + unpays.Nom.Replace("'", "''") + "' );";
+            this._dbal.Insert(query);
+        }
 
 
         public List<pays> SelectAll() 

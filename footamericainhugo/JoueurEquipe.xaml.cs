@@ -12,17 +12,23 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using model.data;
+using model.business;
+
 
 namespace VisionEquipe
 {
     /// <summary>
     /// Logique d'interaction pour MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class JoueurEquipe : Window
     {
-        public MainWindow()
+        public JoueurEquipe(DAOequipe thedaoequipe, DAOjoueur thedaojoueur, DAOpays thedaopays, DAOpost thedaopost)
         {
             InitializeComponent();
+            Globale.DataContext = new viewModel.viewModelJoueur(thedaojoueur,thedaoequipe,thedaopays,thedaopost);
         }
+
+        
     }
 }

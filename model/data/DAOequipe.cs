@@ -58,18 +58,19 @@ namespace model.data
         public List<equipe> SelectAll()
         {
             List<equipe> unequipe = new List<equipe>();
-            foreach (DataRow dl in _dbal.SelectAll("equipe").Rows)
+            DataTable mytable = this._dbal.SelectAll("Equipe");
+            foreach (DataRow dl in mytable.Rows)
             {
-                unequipe.Add(new equipe((int)dl["id"], (string)dl["nom"],(DateTime)dl["creation"]));
-                Console.WriteLine(dl["id"] + " " +dl["nom"] + " " +dl["creation"]);
+                unequipe.Add(new equipe((int)dl["id"], (string)dl["nom"],(DateTime)dl["dateCreation"]));
+               
             }
             return unequipe;
         }
 
         public equipe SelectByName(string nomequipe)
         {
-            DataRow nom = _dbal.SelectByField("equipe", "nom like '" + nomequipe + "'").Rows[0];
-            equipe uneequipe = new equipe((int)nom["id"], (string)nom["nom"], (DateTime)nom["creation"]);
+            DataRow nom = _dbal.SelectByField("Equipe", "nom like '" + nomequipe + "'").Rows[0];
+            equipe uneequipe = new equipe((int)nom["id"], (string)nom["nom"], (DateTime)nom["dateCreation"]);
             Console.WriteLine(uneequipe.Id);
 
             return uneequipe;
@@ -79,7 +80,7 @@ namespace model.data
         public equipe SelectById(int idequipe)
         {
             DataRow equipe = _dbal.SelectById("equipe", idequipe);
-            equipe lequipe = new equipe((int)equipe["id"], (string)equipe["nom"], (DateTime)equipe["creation"]);
+            equipe lequipe = new equipe((int)equipe["id"], (string)equipe["nom"], (DateTime)equipe["dateCreation"]);
             Console.WriteLine(lequipe.Nom);
             return lequipe;
         }

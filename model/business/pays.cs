@@ -24,5 +24,10 @@ namespace model.business
 
         public int Id { get => _id; set => _id = value; }
         public string Nom { get => _nom; set => _nom = value; }
+
+        public override string ToString()
+        {
+            return this.Nom;
+        }
     }
 }

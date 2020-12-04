@@ -39,11 +39,11 @@ namespace model.data
         //    _dbal.Delete(query);
         //}
 
-        //public void update(post lefromage)
-        //{
-        //    string query = " fromage set nom = 'tome' where id = " + lefromage.Id + ";";
-        //    _dbal.Update(query);
-        //}
+        public void update(joueur unjoueur)
+        {
+            string query = " joueur set nom = 'Thomas' where id = " + unjoueur.Id + ";";
+            _dbal.Update(query);
+        }
 
 
 
@@ -63,7 +63,9 @@ namespace model.data
             List<joueur> lesjoueurs = new List<joueur>();
             foreach (DataRow dl in _dbal.SelectAll("joueur").Rows)
             {
-                lesjoueurs.Add(new joueur((int)dl["id"],(string)dl["nom"],(DateTime)dl["dateEntree"], (DateTime)dl["DDN"],(pays)dl["id"],(post)dl["id"]));
+                pays monpays = this._pays.SelectById((int)dl["id"]);
+                post monpost = this._post.SelectById((int)dl["id"]);
+                lesjoueurs.Add(new joueur((int)dl["id"],(string)dl["nom"],(DateTime)dl["dateEntree"], (DateTime)dl["DDN"],monpays,monpost));
                 //Console.WriteLine(dl["id"] + " " + dl["nom"] + " " + dl["dateEntree"] +" " +dl["DDN"] +" " +dl["id"] + " "+ dl["id"]);
             }
             return lesjoueurs;
